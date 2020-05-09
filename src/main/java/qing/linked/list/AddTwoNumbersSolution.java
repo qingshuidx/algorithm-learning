@@ -1,4 +1,4 @@
-package com.linked.list;
+package qing.linked.list;
 
 /**
  * description: AddTwoNumbersSolution

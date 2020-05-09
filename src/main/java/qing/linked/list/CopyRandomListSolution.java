@@ -1,4 +1,4 @@
-package com.linked.list;
+package qing.linked.list;
 
 import java.util.HashMap;
 
@@ -45,6 +45,36 @@ public class CopyRandomListSolution {
         }
         return nodeHashMap.get(head);
     }
+
+    public Node copyRandomList2(Node head) {
+        if(head == null) {
+            return null;
+        }
+        Node result = new Node(0);
+        Node cp;
+        // 生成新链表
+        Node p = head;
+        while (p != null) {
+            Node tmp = new Node(p.val);
+            tmp.next = p.next;
+            p.next = tmp;
+            p = p.next.next;
+        }
+
+        p = head;
+        cp = result;
+        while (p != null) {
+            cp.val = p.next.val;
+            cp.next = p.next.next.next;
+            cp.random = (p.random == null ? null : p.random.next);
+            p.next = p.next.next;
+            p = p.next;
+            cp =  cp.next;
+        }
+        
+        
+        return result;
+    }
     
 
     public static void main(String[] args) {
@@ -58,7 +88,7 @@ public class CopyRandomListSolution {
         head.next.next.next.random = head;
 
         CopyRandomListSolution copyRandomListSolution = new CopyRandomListSolution();
-        Node copy = copyRandomListSolution.copyRandomList(head);
+        Node copy = copyRandomListSolution.copyRandomList2(head);
         print(copy);
     }
 
