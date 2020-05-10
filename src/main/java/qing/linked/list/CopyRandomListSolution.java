@@ -50,8 +50,8 @@ public class CopyRandomListSolution {
         if(head == null) {
             return null;
         }
-        Node result = new Node(0);
-        Node cp;
+
+
         // 生成新链表
         Node p = head;
         while (p != null) {
@@ -61,34 +61,49 @@ public class CopyRandomListSolution {
             p = p.next.next;
         }
 
+        //复制随机指针
         p = head;
-        cp = result;
         while (p != null) {
-            cp.val = p.next.val;
-            cp.next = p.next.next.next;
-            cp.random = (p.random == null ? null : p.random.next);
+            p.next.random = (p.random == null ? null : p.random.next);
+            p = p.next.next;
+        }
+
+        p = head;
+        Node cpHead = head.next;
+        Node cp = cpHead;
+        while (p != null) {
             p.next = p.next.next;
             p = p.next;
+
+            if(cp.next == null) {
+                break;
+            }
+            cp.next = cp.next.next;
             cp =  cp.next;
         }
-        
-        
-        return result;
+
+        return cpHead;
     }
     
 
     public static void main(String[] args) {
+        // [[7,null],[13,0],[11,4],[10,2],[1,0]]
         Node head = new Node(7);
-        head.next = new Node(5);
-        head.next.next = new Node(1);
-        head.next.next.next = new Node(0);
+        head.next = new Node(13);
+        head.next.next = new Node(11);
+        head.next.next.next = new Node(10);
+        head.next.next.next.next = new Node(1);
         head.random = null;
         head.next.random = head;
-        head.next.next.random = head.next.next.next;
-        head.next.next.next.random = head;
+        head.next.next.random = head.next.next.next.next;
+        head.next.next.next.random = head.next.next;
+        head.next.next.next.next.random = head;
 
         CopyRandomListSolution copyRandomListSolution = new CopyRandomListSolution();
         Node copy = copyRandomListSolution.copyRandomList2(head);
+
+        print(head);
+        System.out.println("----------------------");
         print(copy);
     }
 
