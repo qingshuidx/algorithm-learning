@@ -1,4 +1,4 @@
-package qing.linked.list;
+package qing.linked;
 
 import java.util.ArrayList;
 
