@@ -51,7 +51,8 @@ public class MaxAreaOfIsland {
 
         if(grid[i][j] == 1) {
             sum++;
-            grid[i][j] = 0;
+            // 标记已扫描
+            grid[i][j] = 2;
         }
 
         sum = dfs(grid,i-1, j, sum);
@@ -74,7 +75,8 @@ public class MaxAreaOfIsland {
             return 0;
         }
         int sum = 1;
-        grid[i][j] = 0;
+        // 标记已扫描
+        grid[i][j] = 2;
         sum += dfs(grid,i-1, j);
         sum += dfs(grid,i, j-1);
         sum += dfs(grid,i+1, j);
