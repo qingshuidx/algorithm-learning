@@ -88,11 +88,36 @@ public class GetValidT9Words {
         return result;
     }
 
-    public static void main(String[] args) {
-        String num = "2";
-        String[] words = new String[]{"a", "b", "c", "d"};
-        System.out.println(solution(num, words));
+    /**
+     * 网上思路
+     * @param num
+     * @param words
+     * @return
+     */
+    public static List<String> solution2(String num, String[] words) {
+        List<String> list = new ArrayList<>();
+        char [] nums = {'2','2','2','3','3','3','4','4','4','5','5','5','6','6','6','7','7','7','7','8','8','8','9','9','9','9'};
+        for (String word : words){
+            if (isValidT9Words(num,word,nums)) {
+                list.add(word);
+            }
+        }
+        return list;
+    }
+    public static boolean isValidT9Words(String num, String word,char[] nums){
+        for (int i=0;i<word.length();i++){
+            if(nums[word.charAt(i) - 'a'] != num.charAt(i)){
+                return false;
+            }
+        }
+        return true;
     }
 
+
+    public static void main(String[] args) {
+        String num = "8733";
+        String[] words = new String[]{"tree", "used"};
+        System.out.println(solution2(num, words));
+    }
 
 }
