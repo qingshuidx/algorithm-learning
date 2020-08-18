@@ -72,41 +72,36 @@ public class MissingTwo {
         int[] out = new int[2];
         int res = 0;
         int len = nums.length;
-        for(int i=0;i<len;i++){
+        for(int i = 0; i < len; i++){
             res ^= nums[i];
         }
-        for(int i=1;i<=len+2;i++){
+        for(int i = 1; i<= len + 2; i++){
             res ^= i;
         }
-        int cnt = 0;
-        while((res&1)!=1){
-            cnt++;
-            res = res>>1;
-        }
-        int num1 = 0;
-        int num2 = 0;
-        for(int i=0;i<len;i++){
-            if(((nums[i]>>cnt)&1)==1){
-                num1 ^=nums[i];
-            }else{
-                num2 ^=nums[i];
+        int m = res & (-res);
+        int resy = 0;
+        for (int i = 0; i < len; i++) {
+            if ((m & nums[i]) == 1) {
+                resy ^= nums[i];
             }
         }
-        for(int i=1;i<=len+2;i++){
-            if(((i>>cnt)&1)==1){
-                num1 ^= i;
-            }else{
-                num2 ^= i;
+        for (int i = 1; i <= len + 2; i++) {
+            if ((m & i) == 1) {
+                resy ^= i;
             }
         }
-        out[0] = num1;
-        out[1] = num2;
+        out[0] = resy;
+        out[1] = resy ^ res;
         return out;
     }
 
 
     public static void main(String[] args) {
-        int[] nums = new int[]{2,3};
+        int[] nums = new int[]{1,2,3};
         System.out.println(Arrays.toString(solution2(nums)));
+//        System.out.println(1^3^1^2^3^4);
+//        System.out.println(2^4);
+//        System.out.println(6&1);
+//        System.out.println(6^2);
     }
 }
