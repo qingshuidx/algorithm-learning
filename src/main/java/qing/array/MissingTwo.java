@@ -81,12 +81,12 @@ public class MissingTwo {
         int m = res & (-res);
         int resy = 0;
         for (int i = 0; i < len; i++) {
-            if ((m & nums[i]) == 1) {
+            if ((m & nums[i]) > 0) {
                 resy ^= nums[i];
             }
         }
         for (int i = 1; i <= len + 2; i++) {
-            if ((m & i) == 1) {
+            if ((m & i) > 0) {
                 resy ^= i;
             }
         }
@@ -97,11 +97,18 @@ public class MissingTwo {
 
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1,2,3};
+        int[] nums = new int[]{2};
         System.out.println(Arrays.toString(solution2(nums)));
-//        System.out.println(1^3^1^2^3^4);
-//        System.out.println(2^4);
-//        System.out.println(6&1);
-//        System.out.println(6^2);
+//        System.out.println(2^1^2^3);
+//        System.out.println(1^3);
+//        System.out.println(2&-2);
+//        System.out.println(2&2);
+//        System.out.println(2&1);
+//        System.out.println(2&2);
+//        System.out.println(2&3);
+//        System.out.println(2&4);
+//        System.out.println(2&5);
+//        System.out.println(2&6);
+
     }
 }
