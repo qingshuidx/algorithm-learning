@@ -6,8 +6,7 @@ import java.util.Arrays;
  * description: NonComparativeSort
  * 非基于元素比较的排序-时间复杂度为到线性复杂度
  * 1. 基数排序
- * 2. 计数排序
- * 3. 桶排序
+ * 2. 计数排序/桶排序
  * @author yq
  * @date 2020/9/1.
  */
@@ -37,10 +36,8 @@ public class NonComparativeSort {
 
         // 赋值桶中元素-1
         int[][] barrel = new int[10][len];
-        for(int i = 0; i < barrel.length; i++) {
-            for(int j = 0; j < barrel[i].length; j++) {
-                barrel[i][j] = -1;
-            }
+        for (int[] ints : barrel) {
+            Arrays.fill(ints, -1);
         }
         int[] indexs = new int[10];
         int digit = 10;
@@ -91,11 +88,9 @@ public class NonComparativeSort {
 
         // 计数数组空间,初始化值-1
         int[] countArr = new int[max + 1];
-        for(int i = 0; i <= max; i++) {
-            countArr[i] = -1;
-        }
-        for(int i = 0; i < len; i++) {
-            countArr[nums[i]]++;
+        Arrays.fill(countArr, -1);
+        for (int num : nums) {
+            countArr[num]++;
         }
         int k = 0;
         for(int i = 0; i <= max; i++) {
@@ -106,7 +101,6 @@ public class NonComparativeSort {
         }
     }
 
-    // todo 桶排序
 
     public static void main(String[] args) {
         int[] nums = new int[]{11,13,17,23,29,31,7,5,2,3,0, 30, 0, 1, 999, 3,32, 22211, 333,75};

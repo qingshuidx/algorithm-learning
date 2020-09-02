@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  * description: QuickSort
  * 快速排序
+ * 二分法思想
  * 1.挖坑法
  * 2.左右指针法
  * 平均时间复杂度O(nlogn)  最好情况O(nlogn)  最坏情况O(n2)  空间复杂度O(1)
